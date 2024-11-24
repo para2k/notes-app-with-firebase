@@ -60,6 +60,10 @@ export default function App() {
     }
 
     async function updateNote(text) {
+        if(!currentNoteId) {
+            return
+        }
+
         const docRef = doc(db, "notes", currentNoteId)
         await setDoc(docRef,
             {
@@ -70,6 +74,10 @@ export default function App() {
     }
 
     async function deleteNote(noteId) {
+        if(!noteId) {
+            return
+        }
+
         const docRef = doc(db, "notes", noteId)
         await deleteDoc(docRef)
     }
